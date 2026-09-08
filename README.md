@@ -4,7 +4,7 @@ This project is a lightweight Python MCP server for educational options-strategy
 
 https://www.tastylive.com/concepts-strategies/
 
-It is intentionally scoped to educational/reference use. The server exposes the broader strategy-index catalog rather than a narrow top-10 article subset, including entries such as Jade Lizard, Iron Butterfly, and Calendar Spread.
+It is intentionally scoped to educational/reference use. The server exposes the strategy-index catalog, including entries such as Jade Lizard, Iron Butterfly, and Calendar Spread.
 
 ## Included strategies
 
