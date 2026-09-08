@@ -61,5 +61,12 @@ def test_recommendation_contract_for_income_strategies() -> None:
     assert {"Covered Call", "Iron Condor"}.issubset(names)
 
     for item in results:
-        assert item["strategy_type"] in {"income", "hedged", "volatility", "spread", "directional", "short-volatility"}
+        assert item["strategy_type"] in {
+            "income",
+            "hedged",
+            "volatility",
+            "spread",
+            "directional",
+            "short-volatility",
+        }
         assert "best_fit" in item

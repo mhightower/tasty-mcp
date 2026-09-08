@@ -56,25 +56,31 @@ def find_strategies_for_market_view(
     )
     recommendations = []
     for strategy in matches:
-        recommendations.append({
-            "name": strategy["name"],
-            "market_assumption": strategy["market_assumption"],
-            "risk_profile": strategy["risk_profile"],
-            "volatility_bias": strategy["volatility_bias"],
-            "strategy_type": strategy["strategy_type"],
-            "why_it_matches": (
-                f"The {strategy['name']} strategy is a fit because it is aligned with a {strategy['market_assumption']} viewpoint, "
-                f"carries a {strategy['risk_profile']} risk profile, and generally fits a {strategy['volatility_bias']} volatility bias."
-            ),
-            "source": strategy["source"],
-        })
+        recommendations.append(
+            {
+                "name": strategy["name"],
+                "market_assumption": strategy["market_assumption"],
+                "risk_profile": strategy["risk_profile"],
+                "volatility_bias": strategy["volatility_bias"],
+                "strategy_type": strategy["strategy_type"],
+                "why_it_matches": (
+                    f"The {strategy['name']} strategy is a fit because it is aligned with a {strategy['market_assumption']} viewpoint, "
+                    f"carries a {strategy['risk_profile']} risk profile, and generally fits a {strategy['volatility_bias']} volatility bias."
+                ),
+                "source": strategy["source"],
+            }
+        )
 
     best_fit = None
     if recommendations:
         best_fit = recommendations[0]
         if len(recommendations) > 1:
             for recommendation in recommendations[1:]:
-                if recommendation["strategy_type"] in {"income", "hedged", "directional"}:
+                if recommendation["strategy_type"] in {
+                    "income",
+                    "hedged",
+                    "directional",
+                }:
                     best_fit = recommendation
                     break
 
@@ -88,11 +94,14 @@ def find_strategies_for_market_view(
 @mcp.resource("tasty://strategies")
 def strategies_resource() -> str:
     """Provide the full Tastylive strategy-index catalog as a JSON resource for educational lookup."""
-    return json.dumps({
-        "source": REFERENCE_URL,
-        "catalog_type": "Tastylive strategy index",
-        "strategies": get_strategy_catalog(),
-    }, indent=2)
+    return json.dumps(
+        {
+            "source": REFERENCE_URL,
+            "catalog_type": "Tastylive strategy index",
+            "strategies": get_strategy_catalog(),
+        },
+        indent=2,
+    )
 
 
 if __name__ == "__main__":

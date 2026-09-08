@@ -45,7 +45,9 @@ python -m tasty_mcp
 Example:
 
 ```python
-find_strategies_for_market_view(direction="bullish", risk_tolerance="defined", volatility="low")
+find_strategies_for_market_view(
+    direction="bullish", risk_tolerance="defined", volatility="low"
+)
 ```
 
 ## Notes

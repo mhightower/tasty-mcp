@@ -222,25 +222,39 @@ def find_matching_strategies(
             elif normalized_direction == "neutral":
                 direction_match = "neutral" in market or "range" in market
             elif normalized_direction == "directional":
-                direction_match = "directional" in market or "bullish" in market or "bearish" in market
+                direction_match = (
+                    "directional" in market
+                    or "bullish" in market
+                    or "bearish" in market
+                )
 
         risk_match = True
         if normalized_risk:
             if normalized_risk in {"defined", "limited", "premium"}:
-                risk_match = normalized_risk in risk or (normalized_risk == "defined" and "defined" in risk)
+                risk_match = normalized_risk in risk or (
+                    normalized_risk == "defined" and "defined" in risk
+                )
             elif normalized_risk in {"undefined", "large"}:
-                risk_match = normalized_risk in risk or "undefined" in risk or "large" in risk
+                risk_match = (
+                    normalized_risk in risk or "undefined" in risk or "large" in risk
+                )
 
         volatility_match = True
         if normalized_volatility:
             if normalized_volatility in {"low", "medium", "high"}:
                 volatility_match = volatility_bias == normalized_volatility
             elif normalized_volatility == "volatility":
-                volatility_match = "volatility" in strategy_style or volatility_bias in {"high", "medium"}
+                volatility_match = (
+                    "volatility" in strategy_style
+                    or volatility_bias in {"high", "medium"}
+                )
 
         type_match = True
         if normalized_type:
-            type_match = normalized_type in strategy_style or normalized_type in strategy.name.lower()
+            type_match = (
+                normalized_type in strategy_style
+                or normalized_type in strategy.name.lower()
+            )
 
         if direction_match and risk_match and volatility_match and type_match:
             matches.append(strategy.as_dict())
